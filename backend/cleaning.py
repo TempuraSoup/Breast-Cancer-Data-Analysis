@@ -20,7 +20,7 @@ tumorSizeLabels = tumorSize.sort_values().unique()
 
 print(tumorSizeLabels)
 
-dict = {'30-34': 0, '20-24': 0}
+dict = {'0-4': 0, '5-9':0, '10-14':0, '15-19':0, '20-24': 0, '25-29':0, '30-34': 0, '35-39':0, '40-44':0, '45-49':0, '50-54':0, '55-59':0}
 
 print(dict)
 
