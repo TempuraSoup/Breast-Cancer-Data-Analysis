@@ -38,10 +38,14 @@ for tumor in tumorSizeCount:
 
 print(f'TumorArr: {tumorArr}')
 
+def display(pct, vals):
+    absolute = int(pct / 100.*np.sum(vals))
+    return f'{absolute}'
+
 explode = (0, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 fig, ax = plt.subplots()
-ax.pie(tumorArr, labels=tumorSizeLabels, autopct='%1.1f%%', shadow=True, explode=explode)
+ax.pie(tumorArr, labels=tumorSizeLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True, explode=explode)
 ax.set_title('Yo Mama')
 
 plt.show()
