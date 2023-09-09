@@ -21,7 +21,9 @@ tumorSize = df.loc[:, "TumorSize"].sort_values()
 
 ageTumorSize = df.loc[:, ["Age", "TumorSize"]].sort_values("Age")
 
-print(ageTumorSize)
+
+#print(ageTumorSize.at[233, 'Age'])
+#print(ageTumorSize['Age'].values[0])
 
 tumorSizeLabels = tumorSize.unique()
 
