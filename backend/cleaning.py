@@ -23,24 +23,5 @@ tumorSize = df.loc[:, "TumorSize"].sort_values()
 
 ageTumorSize = df.loc[:, ["Age", "TumorSize"]].sort_values("Age")
 
-
-#print(ageTumorSize.at[233, 'Age'])
-#print(ageTumorSize['Age'].values[0])
-
 tumorSizeLabels = tumorSize.unique()
 
-#print(f'TumorSizeLabels: {tumorSizeLabels}')
-
-#dict = {'0-4': 0, '5-9':0, '10-14':0, '15-19':0, '20-24': 0, '25-29':0, '30-34': 0, '35-39':0, '40-44':0, '45-49':0, '50-54':0, '55-59':0}
-
-
-
-
-'''
-plt.bar(age, tumorSize, color="red")
-
-plt.xlabel("Age")
-plt.ylabel("Tumor Size")
-plt.title("Age vs Tumor Size")
-plt.show()
-'''

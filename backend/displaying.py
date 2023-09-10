@@ -35,7 +35,6 @@ def displayAll():
     ax.pie(tumorArr, labels=clean.tumorSizeLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True, explode=explode)
     ax.set_title('All Ages Tumor Size Count')
 
-    #plt.show()
 
 
 def displayCount(ageRange):
@@ -67,10 +66,12 @@ def displayCount(ageRange):
     ax.pie(tumorArr, labels=tumorLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True)
     ax.set_title(f'{ageRange} Tumor Size Count')
 
-    #plt.show()
 
-def plotToImg():
-    displayCount('40-49')
+def plotToImg(ageRange):
+    if (ageRange == 'All Ages'):
+        displayAll()
+    else:
+        displayCount(ageRange)
 
     img = io.BytesIO()
     plt.savefig(img, format='png')
