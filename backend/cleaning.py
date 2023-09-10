@@ -17,6 +17,8 @@ df = pd.read_csv('backend/assets/data/breast-cancer.data', header=None, names=["
 
 age = df.loc[:, "Age"].sort_values()
 
+print(age.unique())
+
 tumorSize = df.loc[:, "TumorSize"].sort_values()
 
 ageTumorSize = df.loc[:, ["Age", "TumorSize"]].sort_values("Age")
@@ -27,7 +29,7 @@ ageTumorSize = df.loc[:, ["Age", "TumorSize"]].sort_values("Age")
 
 tumorSizeLabels = tumorSize.unique()
 
-print(f'TumorSizeLabels: {tumorSizeLabels}')
+#print(f'TumorSizeLabels: {tumorSizeLabels}')
 
 #dict = {'0-4': 0, '5-9':0, '10-14':0, '15-19':0, '20-24': 0, '25-29':0, '30-34': 0, '35-39':0, '40-44':0, '45-49':0, '50-54':0, '55-59':0}
 
