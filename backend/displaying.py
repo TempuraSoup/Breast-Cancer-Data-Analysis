@@ -4,7 +4,10 @@ import pandas as pd
 
 
 from collections import defaultdict
-from cleaning import tumorSize, tumorSizeLabels, age, ageTumorSize
+import backend.cleaning as clean
+
+import io
+import base64
 
 
 def display(pct, vals):
@@ -15,7 +18,7 @@ def display(pct, vals):
 def displayAll():
     tumorSizeCount = defaultdict(lambda:0, {})
 
-    for tumor in tumorSize:
+    for tumor in clean.tumorSize:
         tumorSizeCount[tumor] += 1
 
     tumorArr = np.array([]).astype(int)
@@ -29,16 +32,16 @@ def displayAll():
     explode = (0, 0.2, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     fig, ax = plt.subplots()
-    ax.pie(tumorArr, labels=tumorSizeLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True, explode=explode)
+    ax.pie(tumorArr, labels=clean.tumorSizeLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True, explode=explode)
     ax.set_title('All Ages Tumor Size Count')
 
-    plt.show()
+    #plt.show()
 
 
 def displayCount(ageRange):
     tumorLabels = np.array([])
 
-    for index, row in ageTumorSize.iterrows():
+    for index, row in clean.ageTumorSize.iterrows():
          if (row['Age'] == ageRange and not np.isin(tumorLabels, row['TumorSize']).any()):
               tumorLabels = np.append(tumorLabels, row['TumorSize'])
 
@@ -46,7 +49,7 @@ def displayCount(ageRange):
 
     print(f'AgeRange: {ageRange}')
 
-    for index, row in ageTumorSize.iterrows():
+    for index, row in clean.ageTumorSize.iterrows():
         if (ageRange == row['Age']):
             tumorSizeCount[row['TumorSize']] += 1
 
@@ -64,7 +67,15 @@ def displayCount(ageRange):
     ax.pie(tumorArr, labels=tumorLabels, autopct=lambda pct: display(pct, tumorArr), shadow=True)
     ax.set_title(f'{ageRange} Tumor Size Count')
 
-    plt.show()
+    #plt.show()
 
-displayAll()
-displayCount('40-49')
+def plotToImg():
+    displayCount('40-49')
+
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+
+    img_b64 = base64.b64encode(img.getvalue()).decode()
+
+    return img_b64
